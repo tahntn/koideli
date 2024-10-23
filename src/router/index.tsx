@@ -1,12 +1,17 @@
-import { Navigate, Outlet, useRoutes } from 'react-router-dom';
-import type { RouteObject } from 'react-router-dom';
+import { Outlet, useRoutes } from "react-router-dom";
+import type { RouteObject } from "react-router-dom";
 
-import { ComponentType, FC, PropsWithChildren, Suspense, lazy } from 'react';
-import { paths } from '@/constants';
-import LoadingComponent from '@/components/LoadingComponent';
-import MainLayout from '@/layout/MainLayout';
-import DashboardLayout from '@/layout/DashBoardLayout';
-import PostItemPage from '@/pages/PostItemPage';
+import { ComponentType, FC, PropsWithChildren, Suspense, lazy } from "react";
+import { paths } from "@/constants";
+import LoadingComponent from "@/components/LoadingComponent";
+import AdminLayout from "@/layout/AdminLayout";
+import PostItemPage from "@/pages/PostItemPage";
+import Dashboard from "@/pages/DashBoard.tsx";
+import HomePage from "@/pages/HomePage.tsx";
+import MainLayout from "@/layout/MainLayout";
+import ServicePage from "@/pages/ServicePage";
+import Login from "@/pages/Login";
+import OrderPage from "@/pages/OrderPage";
 
 const Loadable = <P extends object>(Component: ComponentType<P>) => {
   const LazyComponents: FC<P> = (props: PropsWithChildren<P>) => {
@@ -26,75 +31,83 @@ const Loadable = <P extends object>(Component: ComponentType<P>) => {
   return LazyComponents;
 };
 
-const RevenuePage = Loadable(lazy(() => import('../pages/RevenuePage')));
-const SubcriptionPage = Loadable(lazy(() => import('../pages/SubcriptionPage')));
-const SettingsPage = Loadable(lazy(() => import('../pages/SettingsPage')));
-const PostManagementPage = Loadable(lazy(() => import('../pages/PostManagementPage')));
-const NotFoundPage = Loadable(lazy(() => import('../pages/NotFoundPage')));
+const PostManagementPage = Loadable(
+  lazy(() => import("../pages/PostManagementPage"))
+);
+const NotFoundPage = Loadable(lazy(() => import("../pages/NotFoundPage")));
 
 const lazyRoutes: RouteObject[] = [
   {
-    path: '/',
+    path: "/",
     children: [
       {
-        path: '',
-        element: (
-          <MainLayout>
-            <Outlet />
-          </MainLayout>
-        ),
+        path: "admin",
         children: [
           {
-            path: '',
-            element: <Navigate to={paths.dashboard} replace={true} />,
-          },
-
-          {
-            path: paths.dashboard,
+            path: "",
             element: (
-              <DashboardLayout>
+              <AdminLayout>
                 <Outlet />
-              </DashboardLayout>
+              </AdminLayout>
             ),
             children: [
               {
-                path: '',
-                element: <Navigate to={paths.subcription} replace={true} />,
+                path: paths.dashboard,
+                element: <Dashboard />,
               },
               {
-                path: paths.revenue,
-                element: <RevenuePage />,
-              },
-              {
-                path: paths.subcription,
-                element: <SubcriptionPage />,
+                path: paths.ordersManagement,
+                element: (
+                  <>
+                    <PostManagementPage />
+                    <Outlet />
+                  </>
+                ),
+                children: [
+                  {
+                    path: ":id",
+                    element: <PostItemPage />,
+                  },
+                ],
               },
             ],
-          },
-          {
-            path: paths.postsManagement,
-            element: (
-              <>
-                <PostManagementPage />
-                <Outlet />
-              </>
-            ),
-            children: [
-              {
-                path: ':id',
-                element: <PostItemPage />,
-              },
-            ],
-          },
-          {
-            path: paths.settings,
-            element: <SettingsPage />,
-          },
-          {
-            element: <NotFoundPage />,
-            path: '*',
           },
         ],
+      },
+      {
+        path: "",
+        children: [
+          {
+            path: "",
+            element: (
+              <MainLayout>
+                <Outlet />
+              </MainLayout>
+            ),
+            children: [
+              {
+                path: "",
+                element: <HomePage />,
+              },
+              {
+                path: "service",
+                element: <ServicePage />,
+              },
+              {
+                path: "login",
+                element: <Login />,
+              },
+              {
+                path: "order",
+                element: <OrderPage />,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        element: <NotFoundPage />,
+        path: "*",
       },
     ],
   },

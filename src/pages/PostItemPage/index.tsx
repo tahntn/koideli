@@ -1,23 +1,23 @@
-import { getDetailPost } from '@/service/postService';
-import { IPost } from '@/types';
-import { useCallback, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { getDetailPost } from "@/service/postService";
+import { IPost } from "@/types";
+import { useCallback, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
+} from "@/components/ui/dialog";
 
-import { paths } from '@/constants';
-import { toast } from 'sonner';
-// import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import LoadingComponent from '@/components/LoadingComponent';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
+import { paths } from "@/constants";
+import { toast } from "sonner";
+import LoadingComponent from "@/components/LoadingComponent";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import SelectStaff from "@/components/SelectStaff";
 const PostItemPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -30,8 +30,8 @@ const PostItemPage = () => {
         const res = await getDetailPost(id);
         setPost(() => res);
       } catch (error) {
-        toast.error('Id không hợp lệ');
-        navigate(`/${paths.postsManagement}`, { replace: true });
+        toast.error("Id không hợp lệ");
+        navigate(`/${paths.ordersManagement}`, { replace: true });
       } finally {
         setIsLoading(false);
       }
@@ -54,14 +54,18 @@ const PostItemPage = () => {
         ) : (
           <div>
             <DialogHeader>
-              <DialogTitle>{`Post ${post?.id}`}</DialogTitle>
+              <DialogTitle>{`Order ${post?.id}`}</DialogTitle>
             </DialogHeader>
             <div className="grid gap-4 py-4">
               <div className="grid grid-cols-6 items-center gap-4">
                 <Label htmlFor="name" className="text-right">
                   User Id
                 </Label>
-                <Input defaultValue={post?.userId} disabled className="col-span-5" />
+                <Input
+                  defaultValue={post?.userId}
+                  disabled
+                  className="col-span-5"
+                />
               </div>
               <div className="grid grid-cols-6 items-center gap-4">
                 <Label htmlFor="username" className="text-right">
@@ -73,7 +77,17 @@ const PostItemPage = () => {
                 <Label htmlFor="username" className="text-right">
                   Body
                 </Label>
-                <Textarea defaultValue={post?.body} className="col-span-5" rows={6} />
+                <Textarea
+                  defaultValue={post?.body}
+                  className="col-span-5"
+                  rows={6}
+                />
+              </div>
+              <div className="grid grid-cols-6 items-center gap-4">
+                <Label htmlFor="username" className="text-right">
+                  Staff
+                </Label>
+                <SelectStaff />
               </div>
             </div>
             <DialogFooter>

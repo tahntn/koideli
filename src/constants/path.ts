@@ -1,8 +1,7 @@
 export const paths = {
-    dashboard: 'dashboard',
-    subcription: 'subcription',
-    revenue: 'revenue',
-    postsManagement: 'posts-management',
-    settings: 'settings',
-  } as const;
-  
+  dashboard: "dashboard",
+  subscription: "subscription",
+  revenue: "revenue",
+  ordersManagement: "orders-management",
+  settings: "settings",
+} as const;

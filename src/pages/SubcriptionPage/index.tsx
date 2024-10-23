@@ -38,7 +38,7 @@ const SubcriptionPage = () => {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Line type="monotone" dataKey="subcription" stroke="#8884d8">
+            <Line type="monotone" dataKey="subscription" stroke="#8884d8">
               <LabelList content={<CustomizedLabel />} />
             </Line>
             {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}

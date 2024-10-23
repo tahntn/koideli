@@ -1,16 +1,23 @@
-import { useDebounce } from '@/hooks/useDebounce';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { useDebounce } from "@/hooks/useDebounce";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { cn } from '@/lib/utils';
-import { ListFilter, Plus } from 'lucide-react';
-import { ChangeEvent, FC, useCallback, useEffect, useMemo, useState } from 'react';
+} from "@/components/ui/select";
+import { cn } from "@/lib/utils";
+import { ListFilter, Plus } from "lucide-react";
+import {
+  ChangeEvent,
+  FC,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 interface TableToolbarProps {
   value: string;
@@ -19,26 +26,26 @@ interface TableToolbarProps {
     React.SetStateAction<{
       _page: number;
       _limit: number;
-      userId: string | null;
-      title: string | null;
     }>
   >;
   filters: {
     _page: number;
     _limit: number;
-    userId: string | null;
-    title: string | null;
   };
 }
-const TableToolbar: FC<TableToolbarProps> = ({ value, setValue, setFilters, filters }) => {
-  const [valueSearch, setValueSearch] = useState(filters.title || filters.userId || '');
+const TableToolbar: FC<TableToolbarProps> = ({
+  value,
+  setValue,
+  setFilters,
+}) => {
+  const [valueSearch, setValueSearch] = useState("");
 
   const debouncedValueSearch = useDebounce(valueSearch, 500);
 
   const valueFilter = useMemo(
     () => [
-      { id: 'userId', text: 'User ID' },
-      { id: 'title', text: 'Title' },
+      { id: "userId", text: "User ID" },
+      { id: "title", text: "Title" },
     ],
     []
   );
@@ -49,11 +56,12 @@ const TableToolbar: FC<TableToolbarProps> = ({ value, setValue, setFilters, filt
   );
 
   useEffect(() => {
+    return;
     if (debouncedValueSearch.trim() && !!debouncedValueSearch.trim()) {
       setFilters((prev) => ({
         ...prev,
-        userId: value === 'userId' ? debouncedValueSearch.trim() : null,
-        title: value === 'title' ? debouncedValueSearch.trim() : null,
+        userId: value === "userId" ? debouncedValueSearch.trim() : null,
+        title: value === "title" ? debouncedValueSearch.trim() : null,
       }));
     } else {
       if (!valueSearch) {
@@ -70,11 +78,11 @@ const TableToolbar: FC<TableToolbarProps> = ({ value, setValue, setFilters, filt
       <div className="flex items-center space-x-1">
         <Select value={value} onValueChange={setValue}>
           <SelectTrigger
-            className={cn('flex items-center gap-2 w-[105px]')}
+            className={cn("flex items-center gap-2 w-[105px]")}
             aria-label="Select account"
           >
             <SelectValue placeholder="Select an account">
-              <span className={cn('ml-2')}>
+              <span className={cn("ml-2")}>
                 {valueFilter.find((item) => item.id === value)?.text}
               </span>
             </SelectValue>
@@ -96,10 +104,13 @@ const TableToolbar: FC<TableToolbarProps> = ({ value, setValue, setFilters, filt
         />
       </div>
       <div className="flex items-center gap-3">
-        <Button variant={'outline'}>
+        <Button variant={"outline"}>
           <ListFilter />
         </Button>
-        <Button variant={'secondary'} className="w-20 bg-green-600 hover:bg-green-400">
+        <Button
+          variant={"secondary"}
+          className="w-20 bg-green-600 hover:bg-green-400"
+        >
           <Plus />
         </Button>
       </div>
