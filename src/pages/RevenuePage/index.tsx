@@ -1,15 +1,22 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { colors, dataRevenue } from '@/constants';
-import { Bar, BarChart, Cell, ResponsiveContainer, XAxis, YAxis } from 'recharts';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { colors, dataRevenue } from "@/constants";
+import {
+  Bar,
+  BarChart,
+  Cell,
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 const RevenuePage = () => {
   return (
     <Card className="col-span-4">
       <CardHeader>
-        <CardTitle>Revenue</CardTitle>
+        <CardTitle className="text-white ">Revenue</CardTitle>
       </CardHeader>
       <CardContent className="pl-2xl:h-[500px] lg:h-[400px] sm:h-[350px] xs:h-[300px]">
-        <ResponsiveContainer width="100%" height={'100%'}>
+        <ResponsiveContainer width="100%" height={"100%"}>
           <BarChart data={dataRevenue}>
             <XAxis
               dataKey="name"

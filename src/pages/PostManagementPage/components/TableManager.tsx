@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Table,
   TableBody,
@@ -7,11 +7,12 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import { IPost } from '@/types';
-import { Eye, Inbox } from 'lucide-react';
-import { FC, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+} from "@/components/ui/table";
+import ButtonDetail from "@/pages/StaffPage/component/ButtonDetail";
+import { IPost } from "@/types";
+import { Eye, Inbox } from "lucide-react";
+import { FC, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 interface TableManagerProps {
   data: IPost[];
   itemSelected: IPost[];
@@ -19,6 +20,7 @@ interface TableManagerProps {
   isLoading: boolean;
   handleCheckAll: (checked: boolean) => void;
   handleCheckItem: (checked: boolean, post: IPost) => void;
+  isAdmin?: boolean;
 }
 const TableManager: FC<TableManagerProps> = ({
   data,
@@ -27,7 +29,9 @@ const TableManager: FC<TableManagerProps> = ({
   isLoading,
   handleCheckAll,
   handleCheckItem,
+  isAdmin = true,
 }) => {
+  console.log("🚀 ~ isAdmin:", isAdmin);
   const navigate = useNavigate();
   const handleClick = useCallback(
     (id: number) => {
@@ -46,13 +50,14 @@ const TableManager: FC<TableManagerProps> = ({
               onCheckedChange={handleCheckAll}
             />
           </TableHead>
-          <TableHead className="w-[100px] text-center font-bold text-sm">Id</TableHead>
+          <TableHead className="w-[100px] text-center font-bold text-sm">
+            Id
+          </TableHead>
           <TableHead className="text-center font-bold">User Id</TableHead>
           <TableHead className=" font-bold">Title</TableHead>
           <TableHead className="font-bold">Select Staff</TableHead>
           <TableHead className="font-bold">Order status</TableHead>
           <TableHead className="font-bold">Action</TableHead>
-
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -62,19 +67,35 @@ const TableManager: FC<TableManagerProps> = ({
               <TableHead className="text-center">
                 <Checkbox
                   checked={!!itemSelected.find((post) => post.id === item.id)}
-                  onCheckedChange={(checked: boolean) => handleCheckItem(checked, item)}
+                  onCheckedChange={(checked: boolean) =>
+                    handleCheckItem(checked, item)
+                  }
                 />
               </TableHead>
-              <TableCell className="font-medium text-center text-base">{item.id}</TableCell>
-              <TableCell className="font-medium text-center text-base">{item.userId}</TableCell>
-              <TableCell className="font-medium text-start text-base">{item.title}</TableCell>
+              <TableCell className="font-medium text-center text-base">
+                {item.id}
+              </TableCell>
+              <TableCell className="font-medium text-center text-base">
+                {item.userId}
+              </TableCell>
+              <TableCell className="font-medium text-start text-base">
+                {item.title}
+              </TableCell>
               <TableHead className="font-bold">Staff A</TableHead>
               <TableHead className="font-bold">Delivered</TableHead>
-           
+
               <TableCell className="font-medium text-start text-base">
-                <Button size={'icon'} variant={'ghost'} onClick={() => handleClick(item.id)}>
-                  <Eye />
-                </Button>
+                {isAdmin ? (
+                  <Button
+                    size={"icon"}
+                    variant={"ghost"}
+                    onClick={() => handleClick(item.id)}
+                  >
+                    <Eye />
+                  </Button>
+                ) : (
+                  <ButtonDetail />
+                )}
               </TableCell>
             </TableRow>
           ))

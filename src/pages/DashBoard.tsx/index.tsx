@@ -4,7 +4,7 @@ import ChartDashBoard from "@/components/ChartDashBoard";
 const Dashboard = () => {
   return (
     <div className="my-5  flex flex-col gap-4 px-10 ">
-      <h3 className="text-3xl font-bold tracking-tight text-start">
+      <h3 className="text-3xl font-bold tracking-tight text-start text-white ">
         Dashboard
       </h3>
       {/* <div className="flex gap-2 ">

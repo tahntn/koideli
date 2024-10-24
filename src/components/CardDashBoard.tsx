@@ -10,7 +10,7 @@ const CardDashBoard = ({ title = "Total user", total = 10, desc = "" }) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{title}</CardTitle>
+        <CardTitle className="text-white ">{title}</CardTitle>
         <CardDescription>{desc}</CardDescription>
       </CardHeader>
       <CardContent>

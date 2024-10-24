@@ -1,25 +1,38 @@
-import { createElement, useMemo } from "react";
+import { createElement, FC, useMemo } from "react";
 import { Gauge, Table } from "lucide-react";
 import { paths } from "@/constants";
 import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import LogoComponent from "./LogoComponent";
 import { Separator } from "./ui/separator";
-const Sidebar = () => {
+
+interface SidebarProps {
+  isAdmin?: boolean;
+}
+const Sidebar: FC<SidebarProps> = ({ isAdmin = true }) => {
   const menus = useMemo(
-    () => [
-      {
-        title: "Dashboard",
-        icon: Gauge,
-        path: paths.dashboard,
-      },
-      {
-        title: "Orders Management",
-        icon: Table,
-        path: paths.ordersManagement,
-      },
-    ],
-    []
+    () =>
+      isAdmin
+        ? [
+            {
+              title: "Dashboard",
+              icon: Gauge,
+              path: "/admin/" + paths.dashboard,
+            },
+            {
+              title: "Orders Management",
+              icon: Table,
+              path: "/admin/" + paths.ordersManagement,
+            },
+          ]
+        : [
+            {
+              title: "Orders Management",
+              icon: Table,
+              path: "/staff",
+            },
+          ],
+    [isAdmin]
   );
   return (
     <div className="space-y-3">
@@ -27,13 +40,13 @@ const Sidebar = () => {
       <Separator />
       <div className="px-3 py-2">
         <h2 className="mb-4 px-4 text-start text-2xl text-white font-bold tracking-tight">
-          Admin
+          {isAdmin ? "Admin" : "Staff"}
         </h2>
         <ul className="space-y-3">
           {menus.map((menu) => (
             <li key={menu.path}>
               <NavLink
-                to={"/admin/" + menu.path}
+                to={menu.path}
                 className={({ isActive }) =>
                   cn(
                     "flex items-center  p-2 rounded-lg",

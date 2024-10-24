@@ -1,24 +1,22 @@
-import { FC } from "react";
-import Sidebar from "@/components/Sidebar";
 import Header from "@/components/HeaderDashBoard";
-interface AdminLayoutProps {
-  children: React.ReactNode;
-}
+import Sidebar from "@/components/Sidebar";
 
-const AdminLayout: FC<AdminLayoutProps> = ({ children }) => {
+import ListOrder from "./component/ListOrder";
+
+const StaffPage = () => {
   return (
     <div className="grid grid-cols-11 ">
       <div className="2xl:block  sm:hidden xs:hidden col-span-2   min-h-screen px-3 py-4 border-r">
-        <Sidebar />
+        <Sidebar isAdmin={false} />
       </div>
-      {/* Content */}
+
       <div className="2xl:col-span-9 sm:col-span-11 xs:col-span-11">
         <Header />
-
-        <div>{children}</div>
+        <ListOrder />
+        {/* <div>{children}</div> */}
       </div>
     </div>
   );
 };
 
-export default AdminLayout;
+export default StaffPage;

@@ -9,8 +9,11 @@ import { Link } from "react-router-dom";
 
 import { Menu } from "lucide-react";
 import LogoComponent from "./LogoComponent";
+import User from "./User";
+import { useUser } from "@/context";
 
 export function Header() {
+  const { state } = useUser();
   return (
     <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6 fixed bg-white z-50">
       <Sheet>
@@ -81,14 +84,18 @@ export function Header() {
           </NavigationMenuLink>
         </NavigationMenuList>
       </NavigationMenu>
-      <div className=" flex gap-2">
-        <Link to={"/login"}>
-          <Button variant="outline">Sign in</Button>
-        </Link>
-        <Link to={"/login"}>
-          <Button>Sign Up</Button>
-        </Link>
-      </div>
+      {state?.data?.email ? (
+        <User />
+      ) : (
+        <div className=" flex gap-2">
+          <Link to={"/login"}>
+            <Button variant="outline">Sign in</Button>
+          </Link>
+          <Link to={"/login"}>
+            <Button>Sign Up</Button>
+          </Link>
+        </div>
+      )}
     </header>
   );
 }

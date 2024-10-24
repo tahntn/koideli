@@ -2,7 +2,8 @@ import { Input } from "./ui/input";
 
 import { cn } from "@/lib/utils";
 import SheetMenu from "./SheetMenu";
-import Account from "./Account";
+
+import User from "./User";
 
 const HeaderDashBoard = () => {
   return (
@@ -25,7 +26,7 @@ const HeaderDashBoard = () => {
             disabled
           />
         </div>
-        <Account />
+        <User />
       </div>
     </div>
   );
