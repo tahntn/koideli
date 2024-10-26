@@ -223,122 +223,14 @@ const RequestAQuote = () => {
                             <div className="tw-booking-footer">
                               <div className="tw-booking-footer-btn">
                                 <button
-                                  type="submit"
+                                  // type="submit"
                                   className="btn-half site-button"
                                 >
                                   <span>Submit Now</span>
-                                  <em></em>
                                 </button>
                               </div>
                               <span className="tw-booking-footer-text">
                                 Quote
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-
-                    <div className="booking-tab-content">
-                      <form className="track-and-trace-form">
-                        <div className="flex flex-wrap">
-                          <div className="w-full md:w-full lg:w-full">
-                            <div className="mb-3">
-                              <select
-                                id="Shipment_Type"
-                                className="form-select"
-                              >
-                                <option selected>Shipment Type</option>
-                                <option>Road</option>
-                                <option>Train</option>
-                                <option>Air</option>
-                                <option>Sea</option>
-                              </select>
-                            </div>
-                          </div>
-                          <div className="w-full md:w-full lg:w-full">
-                            <div className="mb-3">
-                              <textarea
-                                className="form-control"
-                                id="exampleFormControlTextarea1"
-                                rows={3}
-                              ></textarea>
-                            </div>
-                          </div>
-
-                          <div className="w-full lg:w-full">
-                            <div className="tw-inline-checked mt-2 mb-3">
-                              <div className="mb-4 form-check">
-                                <input
-                                  type="checkbox"
-                                  className="form-check-input"
-                                  id="Fragile1"
-                                />
-                                <label
-                                  className="form-check-label"
-                                  htmlFor="Fragile1"
-                                >
-                                  Fragile
-                                </label>
-                              </div>
-
-                              <div className="mb-4 form-check">
-                                <input
-                                  type="checkbox"
-                                  className="form-check-input"
-                                  id="Express2"
-                                />
-                                <label
-                                  className="form-check-label"
-                                  htmlFor="Express2"
-                                >
-                                  Express Delivery
-                                </label>
-                              </div>
-
-                              <div className="mb-4 form-check">
-                                <input
-                                  type="checkbox"
-                                  className="form-check-input"
-                                  id="Insurance3"
-                                />
-                                <label
-                                  className="form-check-label"
-                                  htmlFor="Insurance3"
-                                >
-                                  Insurance
-                                </label>
-                              </div>
-
-                              <div className="mb-4 form-check">
-                                <input
-                                  type="checkbox"
-                                  className="form-check-input"
-                                  id="packaging4"
-                                />
-                                <label
-                                  className="form-check-label"
-                                  htmlFor="packaging4"
-                                >
-                                  Packaging
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="w-full md:w-full lg:w-full">
-                            <div className="tw-booking-footer">
-                              <div className="tw-booking-footer-btn">
-                                <button
-                                  type="submit"
-                                  className="btn-half site-button"
-                                >
-                                  <span>Track & Trace</span>
-                                  <em></em>
-                                </button>
-                              </div>
-                              <span className="tw-booking-footer-text">
-                                Trace
                               </span>
                             </div>
                           </div>

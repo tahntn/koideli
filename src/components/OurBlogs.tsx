@@ -1,7 +1,28 @@
 import img1 from "@/assets/img/blog/1.jpg";
-
 import img2 from "@/assets/img/blog/2.jpg";
 const OurBlogs = () => {
+  const data = [
+    {
+      img: img1,
+      date: (
+        <>
+          <span>02</span>Aug
+        </>
+      ),
+      des1: "At the end of the day, going forward, a new normal that has evolved from. your only logistic partner.",
+      des2: " New chip traps clusters of migrating tumor cells asperiortenetur, blanditiis odit. typesetting industry the  standard dummy text ever since the when an printer.",
+    },
+    {
+      img: img1,
+      date: (
+        <>
+          <span>02</span>Aug
+        </>
+      ),
+      des1: "At the end of the day, going forward, a new normal that has evolved from. your only logistic partner.",
+      des2: " New chip traps clusters of migrating tumor cells asperiortenetur, blanditiis odit. typesetting industry the  standard dummy text ever since the when an printer.",
+    },
+  ];
   return (
     <div className="section-full p-t120 p-b90 site-bg-white">
       <div className="container">
@@ -19,85 +40,41 @@ const OurBlogs = () => {
 
         <div className="section-content">
           <div className="flex flex-wrap  d-flex justify-content-center">
-            <div className="w-full sm:w-full md:w-1/2 lg:w-1/2 m-b30 px-10">
-              <div className="blog-post blog-post-4-outer">
-                <div className="wt-post-media wt-img-effect zoom-slow">
-                  <div>
-                    <img src={img1} alt="" />
+            {data.map((item, index) => (
+              <div
+                className="w-full sm:w-full md:w-1/2 lg:w-1/2 m-b30 px-10"
+                key={index}
+              >
+                <div className="blog-post blog-post-4-outer">
+                  <div className="wt-post-media wt-img-effect zoom-slow">
+                    <div>
+                      <img src={item.img} alt="" />
+                    </div>
                   </div>
-                </div>
-                <div className="wt-post-info">
-                  <div className="wt-post-meta ">
-                    <ul>
-                      <li className="post-date">
-                        <span>02</span>Aug
-                      </li>
-                    </ul>
-                  </div>
+                  <div className="wt-post-info">
+                    <div className="wt-post-meta ">
+                      <ul>
+                        <li className="post-date">{item.date}</li>
+                      </ul>
+                    </div>
 
-                  <div className="wt-post-title ">
-                    <h3 className="post-title">
-                      <div>
-                        At the end of the day, going forward, a new normal that
-                        has evolved from. your only logistic partner.
+                    <div className="wt-post-title ">
+                      <h3 className="post-title">
+                        <div>{item.des1}</div>
+                      </h3>
+                    </div>
+                    <div className="wt-post-text ">
+                      <p>{item.des2}</p>
+                    </div>
+                    <div className="wt-post-readmore ">
+                      <div className="site-button-link site-text-primary">
+                        Read More
                       </div>
-                    </h3>
-                  </div>
-                  <div className="wt-post-text ">
-                    <p>
-                      New chip traps clusters of migrating tumor cells
-                      asperiortenetur, blanditiis odit. typesetting industry the
-                      standard dummy text ever since the when an printer.
-                    </p>
-                  </div>
-                  <div className="wt-post-readmore ">
-                    <div className="site-button-link site-text-primary">
-                      Read More
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div className="w-full sm:w-full md:w-1/2 lg:w-1/2 m-b30 px-10">
-              <div className="blog-post blog-post-4-outer">
-                <div className="wt-post-media wt-img-effect zoom-slow">
-                  <div>
-                    <img src={img2} alt="" />
-                  </div>
-                </div>
-                <div className="wt-post-info">
-                  <div className="wt-post-meta ">
-                    <ul>
-                      <li className="post-date">
-                        <span>21</span> Aug
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="wt-post-title ">
-                    <h3 className="post-title">
-                      <div>
-                        Going forward, a new normal that has evolved from
-                        generation. moving your products across all borders.
-                      </div>
-                    </h3>
-                  </div>
-                  <div className="wt-post-text ">
-                    <p>
-                      New chip traps clusters of migrating tumor cells
-                      asperiortenetur, blanditiis odit. typesetting industry the
-                      standard dummy text ever since the when an printer.
-                    </p>
-                  </div>
-                  <div className="wt-post-readmore ">
-                    <div className="site-button-link site-text-primary">
-                      Read More
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
