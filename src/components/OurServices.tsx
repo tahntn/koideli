@@ -6,7 +6,7 @@ const OurServices = () => {
       className="wt-bnr-inr overlay-wraper bg-center"
       style={{ backgroundImage: `url(${Banner})` }}
     >
-      <div className="overlay-main site-bg-sky opacity-08"></div>
+      <div className="overlay-main site-bg-sky opacity-80"></div>
       <div className="container">
         <div className="wt-bnr-inr-entry">
           <div className="banner-title-outer">
